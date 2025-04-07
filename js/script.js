@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ease: "power2.inOut",
             scrollTrigger: {
                 trigger: title,
-                markers: true,
+                // markers: true,
                 start: "top 70%",
                 toggleActions: "play none reverse none",
             },
