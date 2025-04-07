@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>swiper + 추가정보</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            ul,
+            ol,
+            li {
+                list-style: none;
+            }
+
+            .wrap {
+                width: 80%;
+                margin: 50px auto;
+                border: 10px solid #eee;
+                display: flex;
+            }
+
+            .info {
+                width: 30%;
+            }
+
+            .info-list {
+                position: relative;
+            }
+
+            .info-list li {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+
+            .info-list li h2 {
+                font-size: 2vw;
+                transform: translateX(-50px);
+                opacity: 0;
+                transition: 0.4s;
+            }
+
+            .info-list li p {
+                margin-top: 20px;
+                transform: translateX(-50px);
+                opacity: 0;
+                transition: 0.4s 0.2s;
+            }
+
+            /* 활성화될 때의 효과 */
+            .info-list li.active h2,
+            .info-list li.active p {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .my-slider-wrap {
+                width: 70%;
+                padding: 20px;
+            }
+
+            .my-slider-wrap .swiper-slide {
+                aspect-ratio: 16/9;
+                border: 1px solid #000;
+                font-size: 5vw;
+            }
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="info">
+                <ul class="info-list">
+                    <li>
+                        <h2>첫번째슬라이드 설명</h2>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Incidunt, ducimus.
+                        </p>
+                    </li>
+                    <li>
+                        <h2>둘번째슬라이드 설명</h2>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Assumenda officiis, eaque maxime voluptatum
+                            distinctio alias totam perspiciatis quos! Maiores,
+                            blanditiis!
+                        </p>
+                    </li>
+                    <li>
+                        <h2>셋번째슬라이드 설명</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Fuga, quam atque perferendis alias sed
+                            praesentium.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="my-slider-wrap">
+                <div class="swiper my-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                        ...
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const mySlider = new Swiper(".swiper", {
+                loop: true,
+
+                on: {
+                    slideChange: function () {
+                        // console.log(this.realIndex);
+
+                        const liEl = document.querySelectorAll(".info-list li");
+                        liEl.forEach((li) => {
+                            li.classList.remove("active");
+                            liEl[this.realIndex].classList.add("active");
+                        });
+                    },
+                },
+            });
+            // mySlider.slideto(1);
+        </script>
+    </body>
+</html>
